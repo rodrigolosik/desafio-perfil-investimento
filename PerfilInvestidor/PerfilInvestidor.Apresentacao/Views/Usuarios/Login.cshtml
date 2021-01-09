@@ -1,0 +1,71 @@
+﻿@model PerfilInvestidor.Modelos.Usuario.ViewModels.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perfil Investidor - Login</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    @Styles.Render("~/template/plugins/styles")
+    @Styles.Render("~/template/styles")
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="#" class="h1">Perfil Investidor</a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Acessar o portal</p>
+
+                @using (Html.BeginForm("Login", "Usuarios", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(a => a.Email, new { @class = "form-control", @placeholder = "Email" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(a => a.Email)
+
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(a => a.Senha, new { @class = "form-control", @placeholder = "Senha" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(a => a.Senha)
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        </div>
+                    </div>
+                }
+                <p class="mb-0">
+                    @Html.ActionLink("Cadastrar","Cadastrar",null, new { @class = "text-center" })
+                </p>
+                <p class="mb-1">
+                    <a href="#">Esqueci minha senha</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/template/scripts")
+</body>
+</html>

@@ -1,0 +1,15 @@
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\PerfilInvestidor.Servicos.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\PerfilInvestidor.Servicos.pdb
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\PerfilInvestidor.Modelos.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\PerfilInvestidor.Repositorios.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\Dapper.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\PerfilInvestidor.Modelos.pdb
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\PerfilInvestidor.Repositorios.pdb
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\Dapper.xml
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\obj\Debug\PerfilInvestidor.Servicos.csprojAssemblyReference.cache
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\obj\Debug\PerfilInvestidor.Servicos.csproj.CoreCompileInputs.cache
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\obj\Debug\PerfilInvestidor.Servicos.csproj.CopyComplete
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\obj\Debug\PerfilInvestidor.Servicos.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\obj\Debug\PerfilInvestidor.Servicos.pdb
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\Newtonsoft.Json.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Servicos\bin\Debug\Newtonsoft.Json.xml

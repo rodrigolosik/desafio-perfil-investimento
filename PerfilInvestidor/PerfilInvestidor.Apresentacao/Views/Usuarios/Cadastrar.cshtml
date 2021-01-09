@@ -1,0 +1,92 @@
+﻿@model PerfilInvestidor.Modelos.Usuario.ViewModels.CadastroViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Perfil Investidor - Cadastrar</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    @Styles.Render("~/template/plugins/styles")
+    @Styles.Render("~/template/styles")
+
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="#" class="h1"><b>Admin</b>LTE</a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Cadastrar novo usuário</p>
+
+                @using (Html.BeginForm("Cadastrar", "Usuarios", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <form action="#" method="post">
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(a => a.Nome, new { @class = "form-control", @placeholder = "Nome completo" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(a => a.Email, new { @class = "form-control", @placeholder = "Email" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.PasswordFor(a => a.Senha, new { @class = "form-control", @placeholder = "Senha" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.PasswordFor(a => a.ConfirmarSenha, new { @class = "form-control", @placeholder = "Confirmar Senha" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                    <label for="agreeTerms">
+                                        Eu concordo com os <a href="#">termos</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                }
+
+                @Html.ActionLink("Já sou cadastrado", "Login", null, new { @class = "text-center" })
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/template/scripts")
+</body>
+</html>

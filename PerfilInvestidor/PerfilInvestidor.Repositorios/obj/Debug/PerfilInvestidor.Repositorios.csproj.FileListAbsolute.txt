@@ -1,0 +1,11 @@
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\bin\Debug\PerfilInvestidor.Repositorios.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\bin\Debug\PerfilInvestidor.Repositorios.pdb
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\bin\Debug\Dapper.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\bin\Debug\PerfilInvestidor.Modelos.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\bin\Debug\PerfilInvestidor.Modelos.pdb
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\bin\Debug\Dapper.xml
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\obj\Debug\PerfilInvestidor.Repositorios.csprojAssemblyReference.cache
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\obj\Debug\PerfilInvestidor.Repositorios.csproj.CoreCompileInputs.cache
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\obj\Debug\PerfilInvestidor.Repositorios.csproj.CopyComplete
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\obj\Debug\PerfilInvestidor.Repositorios.dll
+D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Repositorios\obj\Debug\PerfilInvestidor.Repositorios.pdb
