@@ -66,7 +66,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
+
+                            <div class="co-xs-12 mb-1">
+                                <p>@Html.ValidationMessageFor(a => a.Nome, null, new { @class = "text-danger" })</p>
+                                <p>@Html.ValidationMessageFor(a => a.Email, null, new { @class = "text-danger" })</p>
+                                <p>@Html.ValidationMessageFor(a => a.Senha, null, new { @class = "text-danger" })</p>
+                                <p>@Html.ValidationMessageFor(a => a.ConfirmarSenha, null, new { @class = "text-danger" })</p>
+                            </div>
+
+                            <div class="col-xs-12">
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                                     <label for="agreeTerms">
@@ -74,9 +82,10 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
-                            </div>
+
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
                         </div>
                     </form>
                 }

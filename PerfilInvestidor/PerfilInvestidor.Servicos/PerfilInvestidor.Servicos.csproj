@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SuitabilityServico.cs" />
+    <Compile Include="ISuitabilityServico.cs" />
     <Compile Include="IUsuarioServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioServico.cs" />

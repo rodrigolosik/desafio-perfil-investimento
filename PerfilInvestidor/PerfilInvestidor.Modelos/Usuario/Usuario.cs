@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PerfilInvestidor.Modelos.Enumeradores;
+using System.ComponentModel.DataAnnotations;
 
 namespace PerfilInvestidor.Modelos.Usuario
 {
@@ -12,5 +13,7 @@ namespace PerfilInvestidor.Modelos.Usuario
 
         [DataType(DataType.Password)]
         public string Senha { get; set; }
+
+        public TipoPerfil TipoPerfil { get; set; }
     }
 }

@@ -1,0 +1,58 @@
+﻿@model PerfilInvestidor.Modelos.Suitability.Suitability
+
+@{
+    ViewBag.Title = "AlterarPerfil";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <h3>Definir Perfil de Investidor</h3>
+        </div>
+        <div class="card-body">
+            @foreach (var pergunta in Model.Perguntas)
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>@pergunta.Texto</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @foreach (var resposta in pergunta.Respostas)
+                        {
+
+                            <div class="form-group">
+                                <label class="form-check-label">
+                                    <input name="@pergunta.Texto" type="radio" data-id-pergunta="@pergunta.Id" id="@resposta.Id" value="@resposta.Valor" /> @resposta.Texto
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="card-footer text-right">
+            <button type="button" class="btn btn-block btn-primary" onclick="formulario.salvar()">Salvar</button>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script type="text/javascript">
+        var listaRespostas = @Html.Raw(Json.Encode(ViewData["respostas"]));
+    </script>
+    <script type="text/javascript" src="~/Scripts/Previdencia/Perfil.js"></script>
+}

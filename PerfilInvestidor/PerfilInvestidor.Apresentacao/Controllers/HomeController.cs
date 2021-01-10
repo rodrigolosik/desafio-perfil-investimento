@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using Newtonsoft.Json;
+using PerfilInvestidor.Modelos.Usuario;
+using System.Web.Mvc;
 
 namespace PerfilInvestidor.Apresentacao.Controllers
 {
@@ -6,12 +8,22 @@ namespace PerfilInvestidor.Apresentacao.Controllers
     {
         public ActionResult Index()
         {
-            if(Request.Cookies["usuarioCookie"] == null )
-            {
-                return RedirectToAction("Login","Usuarios");
-            }
+            var usuario = PegarUsuarioCookie();
+            if (usuario == null) return RedirectToAction("Login", "Usuarios");
+
+            ViewBag.NomeUsuario = usuario.Nome;
 
             return View();
+        }
+
+        private Usuario PegarUsuarioCookie()
+        {
+            var cookie = Request.Cookies["usuarioCookie"];
+
+            if (cookie != null)
+                return JsonConvert.DeserializeObject<Usuario>(cookie.Value);
+            else
+                return null;
         }
     }
 }

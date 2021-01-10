@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PerfilInvestidor.Modelos.Enumeradores;
 using PerfilInvestidor.Modelos.Usuario;
 using PerfilInvestidor.Modelos.Usuario.ViewModels;
 using PerfilInvestidor.Repositorios;
@@ -14,9 +15,10 @@ namespace PerfilInvestidor.Servicos
 {
     public class UsuarioServico : IUsuarioServico
     {
+        private readonly UsuarioRepositorio _repo = new UsuarioRepositorio();
+
         public void Adicionar(CadastroViewModel usuarioViewModel)
         {
-            var repo = new UsuarioRepositorio();
             var usuario = new Usuario
             {
                 Nome = usuarioViewModel.Nome,
@@ -24,24 +26,12 @@ namespace PerfilInvestidor.Servicos
                 Senha = HashValue(usuarioViewModel.Senha)
             };
 
-            repo.Adicionar(usuario);
-        }
-
-        public void Alterar(Usuario usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Usuario Selecionar(int id)
-        {
-            var repo = new UsuarioRepositorio();
-            return repo.Selecionar(id);
+            _repo.Adicionar(usuario);
         }
 
         public IEnumerable<Usuario> Listar()
         {
-            var repo = new UsuarioRepositorio();
-            return repo.Listar();
+            return _repo.Listar();
         }
 
         public Usuario ValidarLogin(LoginViewModel loginViewModel)
@@ -81,5 +71,29 @@ namespace PerfilInvestidor.Servicos
             return hashValue.ToString();
         }
 
+        public TipoPerfil ClassificarUsuario(ICollection<int> valores)
+        {
+            var totalPontos = valores.Sum();
+
+            if (totalPontos <= 16)
+            {
+                return TipoPerfil.Conservador;
+            }
+            else if (totalPontos >= 17 && totalPontos <= 32)
+            {
+                return TipoPerfil.Moderado;
+            }
+            else
+            {
+                return TipoPerfil.Agressivo;
+            }
+        }
+
+        public void AtualizarTipoPerfil(int usurioId, ICollection<int> valores)
+        {
+            var classificacao = ClassificarUsuario(valores);
+
+            _repo.AtualizarTipoPerfil(usurioId, classificacao);
+        }
     }
 }

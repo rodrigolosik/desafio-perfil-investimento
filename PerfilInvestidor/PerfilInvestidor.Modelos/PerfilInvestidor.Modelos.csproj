@@ -43,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumeradores\TipoPerfil.cs" />
+    <Compile Include="Suitability\UsuarioResposta.cs" />
+    <Compile Include="Suitability\ViewModels\SuitabilityViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Suitability\Suitability.cs" />
+    <Compile Include="Suitability\Pergunta.cs" />
+    <Compile Include="Suitability\Resposta.cs" />
     <Compile Include="Usuario\Usuario.cs" />
     <Compile Include="Usuario\ViewModels\LoginViewModel.cs" />
     <Compile Include="Usuario\ViewModels\CadastroViewModel.cs" />

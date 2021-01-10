@@ -26,13 +26,22 @@ namespace PerfilInvestidor.Apresentacao.Controllers
 
                 var usuarioExiste = usuarioServico.ValidarLogin(usuario);
 
-                var cookie = usuarioServico.GerarCookie(usuarioExiste);
+                if(usuarioExiste != null)
+                {
+                    var cookie = usuarioServico.GerarCookie(usuarioExiste);
 
-                Response.Cookies.Add(cookie);
+                    Response.Cookies.Add(cookie);
 
-                return RedirectToAction(nameof(Index), "Home");
+                    return RedirectToAction(nameof(Index), "Home");
+                }
             }
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Response.Cookies.Clear();
+            return RedirectToAction("Login", "Usuarios");
         }
 
         public ActionResult Cadastrar()

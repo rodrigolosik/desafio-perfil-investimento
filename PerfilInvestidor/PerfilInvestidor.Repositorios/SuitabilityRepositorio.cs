@@ -1,23 +1,22 @@
 ﻿using Dapper;
-using PerfilInvestidor.Modelos.Enumeradores;
-using PerfilInvestidor.Modelos.Usuario;
+using PerfilInvestidor.Modelos.Suitability;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace PerfilInvestidor.Repositorios
 {
-    public class UsuarioRepositorio : IUsuarioRepositorio
+    public class SuitabilityRepositorio : ISuitabilityRepositorio
     {
         const string ConnectionString = "Data Source=DESKTOP-LIPBPBP;Initial Catalog=PerfilInvestidor;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        public void Adicionar(Usuario usuario)
+        public void SalvarRelacaoUsuarioResposta(int usuarioId, int respostaId)
         {
             try
             {
                 using (var conexaoBD = new SqlConnection(ConnectionString))
                 {
-                    var usuarios = conexaoBD.Execute($"INSERT INTO Usuarios (Nome, Email, Senha) values (@Nome, @Email, @Senha)", usuario);
+                    conexaoBD.Execute($"INSERT INTO UsuariosRespostas (UsuarioId, RespostaId) values (@usuarioId, @respostaId)", new { usuarioId, respostaId });
                 }
             }
             catch (Exception)
@@ -25,13 +24,13 @@ namespace PerfilInvestidor.Repositorios
             }
         }
 
-        public void AtualizarTipoPerfil(int usuarioId, TipoPerfil tipoPerfil)
+        public void LimparRelacionamentoUsuarioResposta(int usuarioId)
         {
             try
             {
                 using (var conexaoBD = new SqlConnection(ConnectionString))
                 {
-                    conexaoBD.Execute($"UPDATE Usuarios SET TipoPerfil = @TipoPerfil WHERE Id = @usuarioId", new { tipoPerfil, usuarioId } );
+                    conexaoBD.Execute($"DELETE FROM UsuariosRespostas where Id = @usuarioId", usuarioId);
                 }
             }
             catch (Exception)
@@ -39,17 +38,25 @@ namespace PerfilInvestidor.Repositorios
             }
         }
 
-        public IEnumerable<Usuario> Listar()
+        public Suitability Selecionar()
+        {
+            using (var conexaoBD = new SqlConnection(ConnectionString))
+            {
+                return new Suitability();
+            }
+        }
+
+        public IEnumerable<UsuarioResposta> ListarRespostasPorUsuario(int usuarioId)
         {
             try
             {
                 using (var conexaoBD = new SqlConnection(ConnectionString))
                 {
-                    IEnumerable<Usuario> usuarios = conexaoBD.Query<Usuario>($"SELECT * FROM Usuarios");
+                    IEnumerable<UsuarioResposta> usuarios = conexaoBD.Query<UsuarioResposta>($"SELECT * FROM UsuariosRespostas WHERE UsuarioId = @UsuarioId", new { usuarioId });
                     return usuarios;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }

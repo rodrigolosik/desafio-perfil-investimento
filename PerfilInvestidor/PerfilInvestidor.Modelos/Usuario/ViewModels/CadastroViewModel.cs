@@ -14,7 +14,8 @@ namespace PerfilInvestidor.Modelos.Usuario.ViewModels
         public string Senha { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Senha")]
+        [Compare("Senha",ErrorMessage = "As senhas informadas devem coincidir.")]
+        [Display(Name = "Confirmar Senha")]
         public string ConfirmarSenha { get; set; }
     }
 }

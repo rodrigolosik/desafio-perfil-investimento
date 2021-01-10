@@ -20,7 +20,7 @@
     <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="#" class="h1">Perfil Investidor</a>
+                <h1 class="h1">Minha Previdência Privada</h1>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Acessar o portal</p>
@@ -37,9 +37,8 @@
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        @Html.ValidationMessageFor(a => a.Email)
-
                     </div>
+
                     <div class="input-group mb-3">
                         @Html.PasswordFor(a => a.Senha, new { @class = "form-control", @placeholder = "Senha" })
                         <div class="input-group-append">
@@ -47,8 +46,13 @@
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        @Html.ValidationMessageFor(a => a.Senha)
                     </div>
+
+                    <div class="mb-5">
+                        <p>@Html.ValidationMessageFor(a => a.Email, null, new { @class = "text-danger" })</p>
+                        <p>@Html.ValidationMessageFor(a => a.Senha, null, new { @class = "text-danger" })</p>
+                    </div>
+
                     <div class="row">
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
@@ -56,11 +60,11 @@
                     </div>
                 }
                 <p class="mb-0">
-                    @Html.ActionLink("Cadastrar","Cadastrar",null, new { @class = "text-center" })
+                    @Html.ActionLink("Cadastrar", "Cadastrar", null, new { @class = "text-center" })
                 </p>
-                <p class="mb-1">
+                @*<p class="mb-1">
                     <a href="#">Esqueci minha senha</a>
-                </p>
+                </p>*@
             </div>
         </div>
     </div>

@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SuitabilityRepositorio.cs" />
+    <Compile Include="ISuitabilityRepositorio.cs" />
     <Compile Include="IUsuarioRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioRepositorio.cs" />
