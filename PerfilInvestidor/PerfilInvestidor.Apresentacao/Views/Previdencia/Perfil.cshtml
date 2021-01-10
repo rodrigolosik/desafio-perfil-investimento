@@ -17,37 +17,110 @@
 </section>
 
 <section class="content">
-    <div class="card">
-        <div class="card-header">
-            <h3>Definir Perfil de Investidor</h3>
-        </div>
-        <div class="card-body">
-            @foreach (var pergunta in Model.Perguntas)
-            {
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h4>@pergunta.Texto</h4>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Suitability</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-warning" onclick="formulario.redefinirPerfil();" data-load-on-init="false">
+                            <i class="fas fa-sync-alt"></i> Redefinir
+                        </button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        @foreach (var resposta in pergunta.Respostas)
-                        {
+                <div class="card-body">
+                    @foreach (var pergunta in Model.Perguntas)
+                    {
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>@pergunta.Texto</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @foreach (var resposta in pergunta.Respostas)
+                                {
+                                    <div class="icheck-primary">
+                                        <div class="form-group">
+                                            <label class="form-check-label">
+                                                <input name="@pergunta.Texto" type="radio" id="@resposta.Id" value="@resposta.Valor" /> @resposta.Texto
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer text-right">
+                    <button type="button" class="btn btn-block btn-warning" onclick="formulario.salvar()">Salvar</button>
+                </div>
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                <label class="form-check-label">
-                                    <input name="@pergunta.Texto" type="radio" data-id-pergunta="@pergunta.Id" id="@resposta.Id" value="@resposta.Valor" /> @resposta.Texto
-                                </label>
+        <div class="col-xs-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <h2>Você tem o perfil de investidor: </h2>
+                            <h1>@ViewBag.NomePerfil</h1>
+
+                            <p>Segue abaixo algumas recomendações de tipos de investimentos baseados no seu perfil: </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @if (ViewBag.NomePerfil == "Agressivo")
+                        {
+                            <div class="col-12">
+                                <div class="info-box bg-danger">
+                                    <div class="info-box-content">
+                                        <p>Minicontrato futuro</p>
+                                        <p>Opções</p>
+                                        <p>Ações</p>
+                                        <p>Fundo de Ações</p>
+                                        <p>Fundo Imobiliário</p>
+                                        <p>Fundo Multimercado</p>
+                                    </div>
+                                </div>
                             </div>
                         }
+                        else if (ViewBag.NomePerfil == "Moderado")
+                        {
+                            <div class="col-12">
+                                <div class="info-box bg-warning">
+                                    <div class="info-box-content">
+                                        <p>Ações</p>
+                                        <p>Fundo de Ações</p>
+                                        <p>Fundo Imobiliário</p>
+                                        <p>Fundo Multimercado</p>
+                                        <p>Fundo Previdência</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12">
+                                <div class="info-box bg-success">
+                                    <div class="info-box-content">
+                                        <p>Tesouro Direto</p>
+                                        <p>Renda Fixa</p>
+                                        <p>Fundo Renda Fixa</p>
+                                        <p>Fundo Previdência</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
-            }
-        </div>
-        <div class="card-footer text-right">
-            <button type="button" class="btn btn-block btn-primary" onclick="formulario.salvar()">Salvar</button>
+            </div>
         </div>
     </div>
+
 </section>
 
 @section scripts {

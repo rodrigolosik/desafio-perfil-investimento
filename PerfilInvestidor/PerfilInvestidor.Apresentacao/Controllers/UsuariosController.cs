@@ -6,10 +6,7 @@ namespace PerfilInvestidor.Apresentacao.Controllers
 {
     public class UsuariosController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        private readonly IUsuarioServico _usuarioServico = new UsuarioServico();
 
         public ActionResult Login()
         {
@@ -22,17 +19,15 @@ namespace PerfilInvestidor.Apresentacao.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioServico = new UsuarioServico();
+                var usuarioExiste = _usuarioServico.ValidarLogin(usuario);
 
-                var usuarioExiste = usuarioServico.ValidarLogin(usuario);
-
-                if(usuarioExiste != null)
+                if (usuarioExiste != null)
                 {
-                    var cookie = usuarioServico.GerarCookie(usuarioExiste);
+                    var cookie = _usuarioServico.GerarUsuarioCookie(usuarioExiste);
 
                     Response.Cookies.Add(cookie);
 
-                    return RedirectToAction(nameof(Index), "Home");
+                    return RedirectToAction("Index", "Previdencia");
                 }
             }
             return View();
@@ -55,12 +50,8 @@ namespace PerfilInvestidor.Apresentacao.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuarioServico = new UsuarioServico();
-
-                usuarioServico.Adicionar(usuario);
-
+                _usuarioServico.Adicionar(usuario);
                 return RedirectToAction(nameof(Login), "Usuarios");
-
             }
             return View();
         }

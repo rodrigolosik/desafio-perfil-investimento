@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PerfilInvestidor.Modelos.Carteira.Carteira>
+
+@{
+    ViewBag.Title = "Ativos";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="container-fluid">
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Carteiras Disponíveis</h3>
+                    <div class="card-tools">
+                        <a href="@Url.Action("Index","Previdencia")" class="btn btn-outline-dark">Voltar</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        @foreach (var carteira in Model)
+                        {
+                            <div class="col">
+                                <div class="card">
+                                    @if (ViewBag.TipoPerfil == carteira.PerfilRecomendado)
+                                    {
+                                        <div class="ribbon-wrapper">
+                                            <div class="ribbon bg-primary">
+                                                Recomendado
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="card-body">
+                                        <dl class="row">
+                                            <dt class="col-sm-4">Composição</dt>
+                                            <dd class="col-sm-8">@carteira.Composicao</dd>
+                                            <dt class="col-sm-4">Rentabilidade</dt>
+                                            <dd class="col-sm-8">@carteira.Rentabilidade</dd>
+                                            <dt class="col-sm-4">Descrição do Perfil</dt>
+                                            <dd class="col-sm-8">@carteira.Descricao</dd>
+                                            <dt class="col-sm-4">Perfil Recomendado</dt>
+                                            <dd class="col-sm-8">@carteira.PerfilRecomendado</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-block btn-warning">Selecionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

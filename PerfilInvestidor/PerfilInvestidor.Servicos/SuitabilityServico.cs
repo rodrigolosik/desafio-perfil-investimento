@@ -6,7 +6,7 @@ namespace PerfilInvestidor.Servicos
 {
     public class SuitabilityServico : ISuitabilityServico
     {
-        private readonly SuitabilityRepositorio _repo = new SuitabilityRepositorio();
+        private readonly ISuitabilityRepositorio _repo = new SuitabilityRepositorio();
 
         public void LimparRelacionamentoUsuarioResposta(int usuarioId)
         {
@@ -32,11 +32,6 @@ namespace PerfilInvestidor.Servicos
         }
 
         public Suitability Selecionar()
-        {
-            return _repo.Selecionar();
-        }
-
-        public Suitability SelecionarMock()
         {
             return new Suitability()
             {

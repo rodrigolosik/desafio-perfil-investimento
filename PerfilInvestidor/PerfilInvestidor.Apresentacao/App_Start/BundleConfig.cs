@@ -29,12 +29,20 @@ namespace PerfilInvestidor.Apresentacao
             bundles.Add(new StyleBundle("~/template/styles").Include(
                 "~/Content/template/dist/css/adminlte.min.css"));
 
-            bundles.Add(new StyleBundle("~/template/scripts").Include(
+            bundles.Add(new ScriptBundle("~/template/scripts").Include(
                 "~/Content/template/dist/js/adminlte.min.js"));
 
             bundles.Add(new StyleBundle("~/template/plugins/styles").Include(
                 "~/Content/template/plugins/fontawesome-free/css/all.min.css",
                 "~/Content/template/plugins/icheck-bootstrap/icheck-bootstrap.min.css"));
+
+            bundles.Add(new ScriptBundle("~/plugins/scripts").Include(
+                "~/Content/template/plugins/toastr/toastr.min.js",
+                "~/Content/template/plugins/sweatalert2/sweatalert2.min.js"));
+
+            bundles.Add(new StyleBundle("~/plugins/styles").Include(
+                "~/Content/template/plugins/toastr/toastr.min.css",
+                "~/Content/template/plugins/sweatalert2/sweatalert2.min.css"));
         }
     }
 }

@@ -1,6 +1,0 @@
-D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Modelos\bin\Debug\PerfilInvestidor.Modelos.dll
-D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Modelos\bin\Debug\PerfilInvestidor.Modelos.pdb
-D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Modelos\obj\Debug\PerfilInvestidor.Modelos.csproj.CoreCompileInputs.cache
-D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Modelos\obj\Debug\PerfilInvestidor.Modelos.dll
-D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Modelos\obj\Debug\PerfilInvestidor.Modelos.pdb
-D:\Projetos\desafio-perfil-investimento\PerfilInvestidor\PerfilInvestidor.Modelos\obj\Debug\PerfilInvestidor.Modelos.csprojAssemblyReference.cache

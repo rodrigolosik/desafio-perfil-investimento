@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carteira\Carteira.cs" />
     <Compile Include="Enumeradores\TipoPerfil.cs" />
     <Compile Include="Suitability\UsuarioResposta.cs" />
     <Compile Include="Suitability\ViewModels\SuitabilityViewModel.cs" />
@@ -54,5 +55,6 @@
     <Compile Include="Usuario\ViewModels\LoginViewModel.cs" />
     <Compile Include="Usuario\ViewModels\CadastroViewModel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

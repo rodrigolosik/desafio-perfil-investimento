@@ -3,7 +3,7 @@
     public enum TipoPerfil
     {
         Conservador = 1,
-        Moderado,
-        Agressivo
+        Moderado = 2 ,
+        Agressivo = 3
     }
 }

@@ -5,8 +5,6 @@ namespace PerfilInvestidor.Repositorios
 {
     public interface ISuitabilityRepositorio
     {
-        Suitability Selecionar();
-
         void SalvarRelacaoUsuarioResposta(int usuarioId, int respostaId);
         void LimparRelacionamentoUsuarioResposta(int usuarioId);
         IEnumerable<UsuarioResposta> ListarRespostasPorUsuario(int usuarioId);

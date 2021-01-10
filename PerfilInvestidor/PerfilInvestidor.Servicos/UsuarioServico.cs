@@ -15,16 +15,20 @@ namespace PerfilInvestidor.Servicos
 {
     public class UsuarioServico : IUsuarioServico
     {
-        private readonly UsuarioRepositorio _repo = new UsuarioRepositorio();
+        private readonly IUsuarioRepositorio _repo = new UsuarioRepositorio();
 
         public void Adicionar(CadastroViewModel usuarioViewModel)
         {
+
+            //TODO: Melhorar a conversão da viewModel pra model
             var usuario = new Usuario
             {
                 Nome = usuarioViewModel.Nome,
                 Email = usuarioViewModel.Email,
                 Senha = HashValue(usuarioViewModel.Senha)
             };
+
+            //TODO: Adicionar validação para saber se o email já foi cadastrado;
 
             _repo.Adicionar(usuario);
         }
@@ -37,22 +41,31 @@ namespace PerfilInvestidor.Servicos
         public Usuario ValidarLogin(LoginViewModel loginViewModel)
         {
             var usuarios = Listar();
-
-            var usuario = usuarios.Where(u => u.Email == loginViewModel.Email && u.Senha == HashValue(loginViewModel.Senha)).FirstOrDefault();
-
-            return usuario;
-
+            return usuarios.Where(u => u.Email == loginViewModel.Email && u.Senha == HashValue(loginViewModel.Senha)).FirstOrDefault();
         }
 
-        public HttpCookie GerarCookie(Usuario usuario)
+        public HttpCookie GerarUsuarioCookie(Usuario usuario)
         {
             HttpCookie cookie = new HttpCookie("usuarioCookie")
             {
                 Value = JsonConvert.SerializeObject(usuario),
                 Expires = DateTime.Now.AddHours(1)
             };
-
             return cookie;
+        }
+
+        public HttpCookie AtualizarUsuarioCookie(Usuario usuario, HttpCookie cookie)
+        {
+            cookie.Value = JsonConvert.SerializeObject(usuario);
+            return cookie;
+        }
+
+        public Usuario PegarUsuarioCookie (HttpCookie cookie)
+        {
+            if (cookie != null)
+                return JsonConvert.DeserializeObject<Usuario>(cookie.Value);
+            else
+                return null;
         }
 
         public static string HashValue(string value)
@@ -94,6 +107,11 @@ namespace PerfilInvestidor.Servicos
             var classificacao = ClassificarUsuario(valores);
 
             _repo.AtualizarTipoPerfil(usurioId, classificacao);
+        }
+
+        public Usuario Pegar(int id)
+        {
+            return _repo.Pegar(id);
         }
     }
 }

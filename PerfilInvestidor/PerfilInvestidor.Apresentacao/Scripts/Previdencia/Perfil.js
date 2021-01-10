@@ -3,7 +3,11 @@ var listaRespostas;
 
 class Formulario {
     constructor() {
-        this.marcarSelecionados();
+
+        if (listaRespostas.length != 0) {
+            this.marcarSelecionados();
+            this.bloquearSelecao();
+        }
     };
 
     salvar() {
@@ -13,13 +17,13 @@ class Formulario {
 
         let ehValido = this.validarFormulario(quantidadeSelecionados)
 
-        if (!ehValido) {
-            console.log('sou invalido');
+        if (ehValido) {
+            let dados = this.montarObjetoFormulario(itensSelecionados);
+            this.salvarDados(dados);
         }
-
-        let dados = this.montarObjetoFormulario(itensSelecionados);
-        this.salvarDados(dados);
-
+        else {
+            //TODO: Exibir mensagem informando que todos os campos deve ser marcados para que o perfil seja atualizado/gravado;
+        }
     };
 
     salvarDados(dados) {
@@ -28,11 +32,15 @@ class Formulario {
             method: 'POST',
             data: dados
         })
-            .done(function (data) {
-                console.log(data);
+            .done((dados) => {
+                this.bloquearSelecao();
+
+                //TODO: Exibir a mensagem de confirmação de alteração/gravação dos dados do perfil do usuário;
+
+                setTimeout(function () { location.reload() }, 2000);
             })
-            .fail(function (erro) {
-                console.log(erro);
+            .fail(dados => {
+                // TODO: Exibir mensagem para o usuário informando que houve um erro ao processar a solicitação;
             });
     }
 
@@ -51,7 +59,8 @@ class Formulario {
 
     validarFormulario(quantidadeItensSelecionados) {
 
-        console.log("Quantidade: " + quantidadeItensSelecionados);
+        // TODO: Verificar a necessidade de adicionar novas validações
+
         if (quantidadeItensSelecionados < 5) {
             return false;
         }
@@ -60,6 +69,21 @@ class Formulario {
 
     marcarSelecionados() {
         listaRespostas.forEach(function (e) { $(`input[id='${e.RespostaId}']`).prop('checked', true) })
+    }
+
+    limparSelecionados() {
+        $('input:checked').prop('checked', false);
+    }
+
+    bloquearSelecao() {
+        $('input').prop('disabled', true);
+    }
+    desbloquearSelecao() {
+        $('input').prop('disabled', false);
+    }
+    redefinirPerfil() {
+        this.limparSelecionados();
+        this.desbloquearSelecao();
     }
 }
 

@@ -9,13 +9,11 @@ namespace PerfilInvestidor.Repositorios
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        const string ConnectionString = "Data Source=DESKTOP-LIPBPBP;Initial Catalog=PerfilInvestidor;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
         public void Adicionar(Usuario usuario)
         {
             try
             {
-                using (var conexaoBD = new SqlConnection(ConnectionString))
+                using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
                     var usuarios = conexaoBD.Execute($"INSERT INTO Usuarios (Nome, Email, Senha) values (@Nome, @Email, @Senha)", usuario);
                 }
@@ -29,9 +27,9 @@ namespace PerfilInvestidor.Repositorios
         {
             try
             {
-                using (var conexaoBD = new SqlConnection(ConnectionString))
+                using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    conexaoBD.Execute($"UPDATE Usuarios SET TipoPerfil = @TipoPerfil WHERE Id = @usuarioId", new { tipoPerfil, usuarioId } );
+                    conexaoBD.Execute($"UPDATE Usuarios SET TipoPerfil = @TipoPerfil WHERE Id = @usuarioId", new { tipoPerfil, usuarioId });
                 }
             }
             catch (Exception)
@@ -43,10 +41,26 @@ namespace PerfilInvestidor.Repositorios
         {
             try
             {
-                using (var conexaoBD = new SqlConnection(ConnectionString))
+                using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
                     IEnumerable<Usuario> usuarios = conexaoBD.Query<Usuario>($"SELECT * FROM Usuarios");
                     return usuarios;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public Usuario Pegar(int id)
+        {
+            try
+            {
+                using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
+                {
+                    Usuario usuario = conexaoBD.QueryFirst<Usuario>($"SELECT * FROM Usuarios WHERE Id = @Id", new { id });
+                    return usuario;
                 }
             }
             catch (Exception)

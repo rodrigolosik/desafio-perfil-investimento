@@ -1,15 +1,25 @@
-﻿using Newtonsoft.Json;
-using PerfilInvestidor.Modelos.Usuario;
-using PerfilInvestidor.Modelos.ViewModels;
+﻿using PerfilInvestidor.Modelos.ViewModels;
 using PerfilInvestidor.Servicos;
+using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace PerfilInvestidor.Apresentacao.Controllers
 {
     public class PrevidenciaController : Controller
     {
-        private readonly SuitabilityServico _servico = new SuitabilityServico();
-        private readonly UsuarioServico _usuarioServico = new UsuarioServico();
+        private readonly ISuitabilityServico _suitabilityServico = new SuitabilityServico();
+        private readonly IUsuarioServico _usuarioServico = new UsuarioServico();
+        private readonly ICarteiraServico _carteiraServico = new CarteiraServico();
+
+        public ActionResult CarteirasRecomendadas()
+        {
+            var cookie = PegarCookie();
+            var usuario = _usuarioServico.PegarUsuarioCookie(cookie);
+            ViewBag.TipoPerfil = usuario.TipoPerfil.ToString();
+
+            return View(_carteiraServico.Listar());
+        }
 
         public ActionResult Index()
         {
@@ -17,49 +27,49 @@ namespace PerfilInvestidor.Apresentacao.Controllers
         }
         public ActionResult Perfil()
         {
-            var usuario = PegarUsuarioCookie();
-            ValidarSessao();
+            try
+            {
+                var cookie = PegarCookie();
+                var usuario = _usuarioServico.PegarUsuarioCookie(cookie);
 
-            var respostas = _servico.ListarRespostasPorUsuario(usuario.Id);
+                //TODO: Melhorar a forma de passar as respostas pro JS
+                ViewData["respostas"] = _suitabilityServico.ListarRespostasPorUsuario(usuario.Id);
 
-            ViewData["respostas"] = respostas;
+                ViewBag.NomePerfil = usuario.TipoPerfil.ToString();
 
-            var questionario = _servico.SelecionarMock();
-            return View(questionario);
+                var questionario = _suitabilityServico.Selecionar();
+                return View(questionario);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
         public object SalvarPerfil(SuitabilityViewModel suitability)
         {
-            var usuario = PegarUsuarioCookie();
+            var cookie = PegarCookie();
+            var usuarioCookie = _usuarioServico.PegarUsuarioCookie(cookie);
+            var usuario = _usuarioServico.Pegar(usuarioCookie.Id);
 
-            ValidarSessao();
+            _suitabilityServico.SalvarRelacaoUsuarioResposta(usuarioCookie.Id, suitability.RespostasIds);
+            _usuarioServico.AtualizarTipoPerfil(usuarioCookie.Id, suitability.RespostasValores);
 
-            _servico.SalvarRelacaoUsuarioResposta(usuario.Id, suitability.RespostasIds);
-
-            _usuarioServico.AtualizarTipoPerfil(usuario.Id, suitability.RespostasValores);
-
+            var novoUsuarioCookie = _usuarioServico.AtualizarUsuarioCookie(usuario, cookie);
+            AlterarUsuarioCookie(novoUsuarioCookie);
+            //TODO: Melhorar retorno para o JS
             return new { message = "Dados salvos com sucesso! ", status = "sucesso" };
-
         }
 
-        private Usuario PegarUsuarioCookie()
+        private HttpCookie PegarCookie()
         {
-            var cookie = Request.Cookies["usuarioCookie"];
-
-            if (cookie != null)
-                return JsonConvert.DeserializeObject<Usuario>(cookie.Value);
-            else
-                return null;
+            return Request.Cookies["usuarioCookie"];
         }
 
-        private ActionResult ValidarSessao()
+        private void AlterarUsuarioCookie(HttpCookie cookie)
         {
-            var usuario = PegarUsuarioCookie();
-            if (usuario == null)
-                return RedirectToAction("Login", "Usuarios");
-
-            return null;
+            Response.Cookies.Add(cookie);
         }
     }
 }

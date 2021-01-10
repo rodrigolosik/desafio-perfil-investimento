@@ -8,6 +8,7 @@ namespace PerfilInvestidor.Repositorios
     {
         void Adicionar(Usuario usuario);
         IEnumerable<Usuario> Listar();
+        Usuario Pegar(int id);
         void AtualizarTipoPerfil(int usuarioId, TipoPerfil tipoPerfil);
     }
 }
