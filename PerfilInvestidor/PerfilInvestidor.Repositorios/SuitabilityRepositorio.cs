@@ -14,7 +14,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    conexaoBD.Execute($"INSERT INTO UsuariosRespostas (UsuarioId, RespostaId) values (@usuarioId, @respostaId)", new { usuarioId, respostaId });
+                    conexaoBD.Execute("INSERT INTO UsuariosRespostas (UsuarioId, RespostaId) values (@usuarioId, @respostaId)", new { usuarioId, respostaId });
                 }
             }
             catch (Exception)
@@ -28,7 +28,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    conexaoBD.Execute($"DELETE FROM UsuariosRespostas where UsuarioId = @UsuarioId", new { usuarioId });
+                    conexaoBD.Execute("DELETE FROM UsuariosRespostas where UsuarioId = @UsuarioId", new { usuarioId });
                 }
             }
             catch (Exception)
@@ -42,7 +42,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    IEnumerable<UsuarioResposta> usuarios = conexaoBD.Query<UsuarioResposta>($"SELECT * FROM UsuariosRespostas WHERE UsuarioId = @UsuarioId", new { usuarioId });
+                    IEnumerable<UsuarioResposta> usuarios = conexaoBD.Query<UsuarioResposta>("SELECT * FROM UsuariosRespostas WHERE UsuarioId = @UsuarioId", new { usuarioId });
                     return usuarios;
                 }
             }

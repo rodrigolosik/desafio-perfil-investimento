@@ -15,7 +15,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    var usuarios = conexaoBD.Execute($"INSERT INTO Usuarios (Nome, Email, Senha) values (@Nome, @Email, @Senha)", usuario);
+                    var usuarios = conexaoBD.Execute("INSERT INTO Usuarios (Nome, Email, Senha) values (@Nome, @Email, @Senha)", usuario);
                 }
             }
             catch (Exception)
@@ -29,7 +29,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    conexaoBD.Execute($"UPDATE Usuarios SET TipoPerfil = @TipoPerfil WHERE Id = @usuarioId", new { tipoPerfil, usuarioId });
+                    conexaoBD.Execute("UPDATE Usuarios SET TipoPerfil = @TipoPerfil WHERE Id = @usuarioId", new { tipoPerfil, usuarioId });
                 }
             }
             catch (Exception)
@@ -43,7 +43,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    IEnumerable<Usuario> usuarios = conexaoBD.Query<Usuario>($"SELECT * FROM Usuarios");
+                    IEnumerable<Usuario> usuarios = conexaoBD.Query<Usuario>("SELECT * FROM Usuarios");
                     return usuarios;
                 }
             }
@@ -59,7 +59,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    Usuario usuario = conexaoBD.QueryFirst<Usuario>($"SELECT * FROM Usuarios WHERE Id = @Id", new { id });
+                    Usuario usuario = conexaoBD.QueryFirst<Usuario>("SELECT * FROM Usuarios WHERE Id = @Id", new { id });
                     return usuario;
                 }
             }

@@ -19,6 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfilInvestidor.Servicos",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfilInvestidor.Repositorios", "PerfilInvestidor.Repositorios\PerfilInvestidor.Repositorios.csproj", "{0FFFC365-3555-40B3-BF19-D2571F39BC64}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Queries", "5. Queries", "{73B593CD-3FEA-413C-9411-BB64454BE954}"
+	ProjectSection(SolutionItems) = preProject
+		PerfilInvestidor.sql = PerfilInvestidor.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

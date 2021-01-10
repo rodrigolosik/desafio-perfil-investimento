@@ -57,9 +57,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Querys\PerfilInvestidor.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PerfilInvestidor.Modelos\PerfilInvestidor.Modelos.csproj">
       <Project>{9663a7cf-9fc6-4ed4-b7e5-abc617319307}</Project>
       <Name>PerfilInvestidor.Modelos</Name>

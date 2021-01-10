@@ -14,7 +14,7 @@ namespace PerfilInvestidor.Repositorios
             {
                 using (var conexaoBD = new SqlConnection(Utils.Utils.ConnectionString))
                 {
-                    IEnumerable<Carteira> carteiras = conexaoBD.Query<Carteira>($"SELECT * FROM Carteiras");
+                    IEnumerable<Carteira> carteiras = conexaoBD.Query<Carteira>("SELECT * FROM Carteiras");
                     return carteiras;
                 }
             }

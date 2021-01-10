@@ -6,6 +6,6 @@ namespace PerfilInvestidor.Modelos.Suitability
     {
         public int Id { get; set; }
         public string Texto { get; set; }
-        public ICollection<Resposta> Respostas { get; set; } = new List<Resposta>();
+        public ICollection<Resposta> Respostas { get; set; }
     }
 }
